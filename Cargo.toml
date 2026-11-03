@@ -37,8 +37,8 @@ debug = true
 dev = ["prost", "base64", "serde_json"]
 
 [dependencies]
-presage = { git = "https://github.com/whisperfish/presage", rev = "94b3978f5456469cfd4d9f72351a5eff93715f81", default-features = false }
-presage-store-sqlite = { git = "https://github.com/whisperfish/presage", rev = "94b3978f5456469cfd4d9f72351a5eff93715f81", default-features = false }
+presage = { git = "https://github.com/whisperfish/presage", rev = "aeaedf9", default-features = false }
+presage-store-sqlite = { git = "https://github.com/whisperfish/presage", rev = "aeaedf9", default-features = false }
 
 # dev feature dependenciestoml
 prost = { version = "0.14.4", optional = true }
@@ -135,3 +135,8 @@ required-features = ["dev"]
 # - Disable atexit cleanup in sqlcipher, which unsafe when other threads may
 #   still be closing database connections.
 libsqlite3-sys = { version = "0.36.0", git = "https://github.com/boxdot/rusqlite", rev = 'a2f393913d9994645c94810498bef07b2183b3dc' }
+
+# Same presage as sig, with its local fixes (decryption-error handling,
+# storage service, media root backup key when linking).
+[patch."https://github.com/whisperfish/presage"]
+presage = { path = "../sig/vendor/presage" }
